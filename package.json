@@ -28,7 +28,10 @@
   ],
   "scripts": {
     "prepublish": "grunt clean coffee lint",
-    "test": "grunt test"
+    "test": "grunt test",
+    "electron": "node-gyp rebuild --runtime=electron --target=1.4.4 --disturl=https://atom.io/download/atom-shell --build-from-source",
+    "install": "echo",
+    "build": "node-gyp rebuild"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
@@ -41,6 +44,7 @@
     "grunt-coffeelint": "0.0.6"
   },
   "dependencies": {
+    "bindings": "craigcomstocks/node-bindings#find-by-abi",
     "nan": "2.3.2"
   }
 }
