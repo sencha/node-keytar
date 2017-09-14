@@ -2,13 +2,8 @@
   "main": "./lib/keytar.js",
   "name": "keytar",
   "description": "Bindings to native Mac/Linux/Windows password APIs",
-  "version": "3.0.2",
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "http://github.com/atom/node-keytar/raw/master/LICENSE.md"
-    }
-  ],
+  "version": "4.0.4",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/atom/node-keytar.git"
@@ -34,14 +29,12 @@
     "build": "node-gyp rebuild"
   },
   "devDependencies": {
-    "grunt": "~0.4.1",
-    "grunt-contrib-coffee": "~0.9.0",
-    "grunt-cli": "~0.1.7",
-    "grunt-shell": "~0.2.2",
-    "jasmine-focused": "~1.x",
-    "rimraf": "~2.1.4",
+    "babel-core": "^6.24.1",
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0",
     "node-cpplint": "~0.1.5",
-    "grunt-coffeelint": "0.0.6"
+    "node-gyp": "^3.6.0"
   },
   "dependencies": {
     "bindings": "sencha/node-bindings#find-by-abi",
