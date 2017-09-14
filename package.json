@@ -44,7 +44,7 @@
     "grunt-coffeelint": "0.0.6"
   },
   "dependencies": {
-    "bindings": "craigcomstocks/node-bindings#find-by-abi",
+    "bindings": "sencha/node-bindings#find-by-abi",
     "nan": "2.3.2"
   }
 }
