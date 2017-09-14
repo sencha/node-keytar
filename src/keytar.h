@@ -5,29 +5,17 @@
 
 namespace keytar {
 
-enum KEYTAR_OP_RESULT {
-  SUCCESS,
-  FAIL_ERROR,
-  FAIL_NONFATAL
-};
+bool AddPassword(const std::string& service,
+                 const std::string& account,
+                 const std::string& password);
 
-KEYTAR_OP_RESULT SetPassword(const std::string& service,
-                             const std::string& account,
-                             const std::string& password,
-                             std::string* error);
+bool GetPassword(const std::string& service,
+                 const std::string& account,
+                 std::string* password);
 
-KEYTAR_OP_RESULT GetPassword(const std::string& service,
-                             const std::string& account,
-                             std::string* password,
-                             std::string* error);
+bool DeletePassword(const std::string& service, const std::string& account);
 
-KEYTAR_OP_RESULT DeletePassword(const std::string& service,
-                                const std::string& account,
-                                std::string* error);
-
-KEYTAR_OP_RESULT FindPassword(const std::string& service,
-                              std::string* password,
-                              std::string* error);
+bool FindPassword(const std::string& service, std::string* password);
 
 }  // namespace keytar
 

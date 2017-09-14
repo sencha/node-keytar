@@ -1,10 +1,11 @@
 # keytar - Node module to manage system keychain
 
-[![Travis Build Status](https://travis-ci.org/atom/node-keytar.svg?branch=master)](https://travis-ci.org/atom/node-keytar)
-[![Windows Build Status](https://ci.appveyor.com/api/projects/status/github/atom/node-keytar?svg=true)](https://ci.appveyor.com/project/Atom/node-keytar)
-[![Dependency Status](https://david-dm.org/atom/node-keytar.svg)](https://david-dm.org/atom/node-keytar)
+[![Build
+Status](https://travis-ci.org/atom/node-keytar.svg?branch=master)](https://travis-ci.org/atom/node-keytar)
 
-A native Node module to get, add, replace, and delete passwords in system's keychain. On macOS the passwords are managed by the Keychain, on Linux they are managed by the Secret Service API/libsecret, and on Windows they are managed by Credential Vault.
+A native Node module to get, add, replace, and delete passwords in system's
+keychain. On OS X the passwords are managed by the Keychain, on Linux they are
+managed by Gnome Keyring and on Windows they are managed by Credential Vault.
 
 ## Installing
 
@@ -14,27 +15,21 @@ npm install keytar
 
 ### On Linux
 
-Currently this library uses `libsecret` so you may need to install it before running `npm install`.
+Currently this library uses the gnome-keyring so you may need to run `sudo apt-get install libgnome-keyring-dev` before `npm install`ing.
 
-Depending on your distribution, you will need to run the following command:
-
-* Debian/Ubuntu: `sudo apt-get install libsecret-1-dev`
-* Red Hat-based: `sudo yum install libsecret-devel`
-* Arch Linux: `sudo pacman -S libsecret`
+If you are using a Red Hat-based system you need to run `sudo yum install libgnome-keyring-devel`.
 
 ## Building
-
   * Clone the repository
   * Run `npm install`
-  * Run `npm test` to run the tests
+  * Run `grunt` to compile the native and CoffeeScript code
+  * Run `grunt test` to run the specs
 
 ## Docs
 
-```javascript
-const keytar = require('keytar')
+```coffeescript
+keytar = require 'keytar'
 ```
-
-Every function in keytar is asynchronous and returns a promise. The promise will be rejected with any error that occurs or will be resolved with the function's "yields" value.
 
 ### getPassword(service, account)
 
@@ -44,11 +39,11 @@ Get the stored password for the `service` and `account`.
 
 `account` - The string account name.
 
-Yields the string password or `null` if an entry for the given service and account was not found.
+Returns the string password or `null` on failures.
 
-### setPassword(service, account, password)
+### addPassword(service, account, password)
 
-Save the `password` for the `service` and `account` to the keychain. Adds a new entry if necessary, or updates an existing entry if one exists.
+Add the `password` for the `service` and `account` to the keychain.
 
 `service` - The string service name.
 
@@ -56,7 +51,7 @@ Save the `password` for the `service` and `account` to the keychain. Adds a new 
 
 `password` - The string password.
 
-Yields nothing.
+Returns `true` on success, `false` on failure.
 
 ### deletePassword(service, account)
 
@@ -66,7 +61,23 @@ Delete the stored password for the `service` and `account`.
 
 `account` - The string account name.
 
-Yields `true` if a password was deleted, or `false` if an entry with the given service and account was not found.
+Returns the string password or `null` on failures.
+
+### replacePassword(service, account, password)
+
+Replace the `password` for the `service` and `account` in the keychain.
+
+This is a simple convenience function that internally calls
+`deletePassword(service, account)` followed by
+`addPassword(service, account, password)`.
+
+`service` - The string service name.
+
+`account` - The string account name.
+
+`password` - The string password.
+
+Returns `true` on success, `false` on failure.
 
 ### findPassword(service)
 
@@ -74,4 +85,4 @@ Find a password for the `service` in the keychain.
 
 `service` - The string service name.
 
-Yields the string password, or `null` if an entry for the given service and account was not found.
+Returns the string password or `null` on failures.
