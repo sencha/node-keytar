@@ -32,6 +32,11 @@
     "babel-core": "^6.24.1",
     "babel-plugin-transform-async-to-generator": "^6.24.1",
     "chai": "^3.5.0",
+    "grunt": "^1.0.1",
+    "grunt-coffeelint": "0.0.16",
+    "grunt-contrib-coffee": "^1.0.0",
+    "grunt-shell": "^2.1.0",
+    "jasmine-focused": "^1.0.7",
     "mocha": "^3.2.0",
     "node-cpplint": "~0.1.5",
     "node-gyp": "^3.6.0"
